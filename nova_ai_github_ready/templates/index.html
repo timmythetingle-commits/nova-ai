@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="A simple Python AI chatbot built with Flask.">
-  <title>Nova — Python AI Chatbot</title>
+  <meta name="description" content="Nova is your AI study partner for AP Government and beyond.">
+  <title>Nova — AI Study Partner</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
@@ -13,31 +13,31 @@
       <a href="/" class="brand" aria-label="Nova Home"><span class="brand-icon">✦</span><span>nova<span class="brand-dot">.</span></span></a>
       <div class="sidebar-section">YOUR WORKSPACE</div>
       <button class="nav-item active" id="newChat" type="button"><span>＋</span> New conversation</button>
-      <div class="sidebar-bottom"><div class="status"><span class="status-dot"></span> Offline AI engine</div><p>Built with Python + Flask<br>Ready for Render</p></div>
+      <div class="sidebar-bottom"><div class="status"><span class="status-dot"></span> {{ 'AI connected' if configured else 'API setup needed' }}</div><p>Built with Python + Flask<br>AP Government tutor</p></div>
     </aside>
     <main class="main">
-      <header class="topbar"><span class="header-name">Nova AI</span><span class="model-pill">✦ Intent model v1</span></header>
+      <header class="topbar"><span class="header-name">Nova AI</span><span class="model-pill">✦ AI Study Partner</span></header>
       <section class="chat-layout">
         <div id="messages" class="messages" role="log" aria-live="polite" aria-label="Chat messages">
           <div id="welcome" class="welcome">
             <div class="welcome-symbol">✦</div>
-            <h1>What can I help you with?</h1>
-            <p>A small AI chatbot powered by Python. Ask about programming, studying, or just say hello.</p>
+            <h1>What would you like to learn?</h1>
+            <p>Explore AP Government, build stronger arguments, and understand the reasoning behind every answer.</p>
             <div class="suggestions">
-              <button class="suggestion" type="button" data-prompt="Hello!">👋 <span>Say hello</span> <span>↗</span></button>
-              <button class="suggestion" type="button" data-prompt="Help me code">⌘ <span>Help me code</span> <span>↗</span></button>
-              <button class="suggestion" type="button" data-prompt="How should I prepare for a test?">📚 <span>Study advice</span> <span>↗</span></button>
-              <button class="suggestion" type="button" data-prompt="Who are you?">✦ <span>About this AI</span> <span>↗</span></button>
+              <button class="suggestion" type="button" data-prompt="Teach me AP Government Unit 1 with examples and a practice question.">📚 <span>Teach me Unit 1</span> <span>↗</span></button>
+              <button class="suggestion" type="button" data-prompt="Teach me how to write a strong AP Government argument FRQ.">✎ <span>Improve my FRQs</span> <span>↗</span></button>
+              <button class="suggestion" type="button" data-prompt="Help me make a study plan for all five AP Government units.">📅 <span>Plan my studying</span> <span>↗</span></button>
+              <button class="suggestion" type="button" data-prompt="Explain civil liberties versus civil rights, with examples.">⚖ <span>Understand key concepts</span> <span>↗</span></button>
             </div>
           </div>
         </div>
         <div class="composer-wrap">
           <form id="chatForm" class="composer" autocomplete="off">
             <label class="sr-only" for="messageInput">Send a message</label>
-            <textarea id="messageInput" rows="1" maxlength="1000" placeholder="Message Nova..." required></textarea>
-            <div class="composer-actions"><span>Python-powered · no API key needed</span><button id="sendButton" aria-label="Send message" title="Send message" type="submit">↑</button></div>
+            <textarea id="messageInput" rows="1" maxlength="8000" placeholder="Message Nova..." required></textarea>
+            <div class="composer-actions"><span>{{ 'AI connected · conversation context enabled' if configured else 'API key required on the server to enable answers' }}</span><button id="sendButton" aria-label="Send message" title="Send message" type="submit">↑</button></div>
           </form>
-          <p class="disclaimer">Nova is a small example AI and may misunderstand questions. Don't share private information.</p>
+          <p class="disclaimer">Nova can make mistakes. Check important facts and official scoring rubrics. Messages are sent to Groq.</p>
         </div>
       </section>
     </main>
