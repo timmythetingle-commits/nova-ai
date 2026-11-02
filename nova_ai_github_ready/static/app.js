@@ -4,6 +4,7 @@ const send = document.getElementById('sendButton');
 const messages = document.getElementById('messages');
 const newChat = document.getElementById('newChat');
 let busy = false;
+let history = [];
 
 function addMessage(text, role) {
   document.getElementById('welcome')?.remove();
@@ -37,11 +38,13 @@ async function submitMessage(raw) {
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({message}),
+      body: JSON.stringify({message, history: history.slice(-20)}),
     });
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || 'Something went wrong.');
     bubble.textContent = data.reply;
+    history.push({role: 'user', content: message}, {role: 'assistant', content: data.reply});
+    history = history.slice(-20);
   } catch (error) {
     bubble.textContent = `Sorry, I couldn't reply. ${error.message}`;
   } finally {
